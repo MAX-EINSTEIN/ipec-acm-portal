@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Blog
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Welcome to the Base Template for Django</h1>
+
+        <p>You are signed in as: </p>
+        {% comment %} 
+            {% if user.is_authenticated %}
+                <p>You are autheticated</p>
+            {% else %}
+                <p>You are not auntheticated</p>
+            {% endif %} {% endcomment %}
+    </div>
+
+{% endblock %}
