@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Welcome to User Dashboard</h1>
+
+        <p>You are signed in as: {{ user.username|default:'Guest' }}</p>
+
+    </div>
+
+{% endblock %}

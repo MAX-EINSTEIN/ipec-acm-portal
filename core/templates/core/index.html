@@ -1,21 +1,17 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Blog
+IPEC ACM PORTAL
 {% endblock %}
 
 {% block content %}
 
     <div class="container">
-        <h1>Welcome to the Base Template for Django</h1>
+        <h1>Welcome to the IPEC ACM's Task Submission Portal</h1>
 
-        <p>You are signed in as: </p>
-        {% comment %} 
-            {% if user.is_authenticated %}
-                <p>You are autheticated</p>
-            {% else %}
-                <p>You are not auntheticated</p>
-            {% endif %} {% endcomment %}
+        <div>
+            <a href={% url 'users:dashboard' %} class="btn btn-dark"> Dashboard </a>
+        </div>
     </div>
 
 {% endblock %}
