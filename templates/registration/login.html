@@ -21,17 +21,24 @@ Login
     {% endif %}
   {% endif %}
 
-  <form method="post" action="{% url 'users:login' %}">
-    {% csrf_token %}
-    <table>
-    {{ form | crispy }}
-    <button type="submit" class="btn btn-dark">Login</button>
-    <input type="hidden" name="next" value="{{ next }}" />
-  </form>
+  <div class="container shadow rounded" style="width:35%">
+        <h1>Login</h1>
+        <hr>
+        <br>
+        <div class="container">
+            <form method="post" action="{% url 'users:login' %}">
+              {% csrf_token %}
+              <table>
+              {{ form | crispy }}
+              <button type="submit" class="btn btn-dark">Login</button>
+              <input type="hidden" name="next" value="{{ next }}" />
+            </form>
 
-  <p><a href="{% url 'users:register' %}">Create an Account.</a></p>
+            <p><a class="m-2" href="{% url 'users:register' %}">Create an Account.</a></p>
 
-  {# Assumes you setup the password_reset view in your URLconf #}
-  <p><a href="{% url 'users:password_reset' %}">Lost password?</a></p>
+            {# Assumes you setup the password_reset view in your URLconf #}
+            <p><a class="m-2" href="{% url 'users:password_reset' %}">Lost password?</a></p>
+        </div>
+  </div>
 
 {% endblock %}
