@@ -38,8 +38,8 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
+  -o-object-fit: repeat;
+  object-fit: repeat;
 }
 .login-card .card-body {
   padding: 85px 60px 60px;

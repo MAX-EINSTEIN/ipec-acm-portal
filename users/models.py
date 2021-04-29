@@ -16,7 +16,7 @@ class Member(models.Model):
     projects = models.TextField(default='', blank=True)
     member_type = models.CharField(max_length=20, default='SIG MEMBER', blank=True)
     is_acm_team = models.BooleanField(default=False, null=True)
-    sigs = models.ManyToManyField("sigs.SpecialInterestGroup", blank=True, limit_choices_to=3)
+    sigs = models.ManyToManyField("sigs.SpecialInterestGroup", blank=True)
     submissions = models.ManyToManyField("tasks.TaskSubmission", blank=True)
 
     def __str__(self) -> str:
