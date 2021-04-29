@@ -3,9 +3,11 @@ from django.contrib.auth import login
 from django.conf import settings
 from django.urls import reverse_lazy
 from .forms import EmailUserCreationForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required(login_url=settings.LOGIN_URL)
 def dashboard(request):
     return render(request, 'users/dashboard.html')
 

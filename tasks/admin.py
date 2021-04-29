@@ -4,4 +4,4 @@ from .models import *
 # Register your models here.
 admin.site.register(Task)
 admin.site.register(TaskSubmission)
-admin.site.register(LearningResources)
+admin.site.register(LearningResource)

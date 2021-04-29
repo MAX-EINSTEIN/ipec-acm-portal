@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tasks', '0001_initial'),
-        ('users', '0002_member_sigs'),
+        ('sigs', '0001_initial'),
+        ('users', '0001_initial'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='member',
-            name='submissions',
-            field=models.ManyToManyField(blank=True, to='tasks.TaskSubmission'),
+            name='sigs',
+            field=models.ManyToManyField(blank=True, limit_choices_to=3, to='sigs.SpecialInterestGroup'),
         ),
     ]
