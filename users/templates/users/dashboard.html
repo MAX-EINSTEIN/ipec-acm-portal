@@ -1,16 +1,48 @@
-{% extends 'base.html' %}
+{% extends 'base_dashboard.html' %}
+{% load static %}
 
 {% block title %}
-Dashboard
+{{  user.username|default:'Guest' }}
 {% endblock %}
 
-{% block content %}
+{% block header_content %}
 
-    <div class="container">
-        <h1>Welcome to User Dashboard</h1>
+    <div class="row">
+            <div class="profile-banner">
+                <div class="profile-info color-primary-dark">
+                    <img src="{% static 'images/profile_img.jpg' %}" alt="profile image"/>
+                    <div class="profile-name">
+                        {{  user.username|default:'Guest' }}
+                    </div>
 
-        <p>You are signed in as: {{ user.username|default:'Guest' }}</p>
+                    <div class="member-details">
+                        <div class="class">CSE 2B</div>
+                        <div class="sigs-joined"> 3 SIGs </div>
+                    </div>
 
+                    <div class="options">
+                        <a href="#" class="edit-profile">EDIT PROFILE</a>
+                        <a href="#" class="member-type">SIG MEMBER</a>
+                    </div>
+                </div>
+            </div>
+            
     </div>
 
 {% endblock %}
+
+
+
+{% block content %}
+    {% comment %} <div class="mt-4 mr-3 ml-3">
+        <h3>SIGs Joined<h3>
+        <div class="row sigs mt-2 pt-4">
+            <div class="col-md-4">SIG PYTHON</div>
+            <div class="col-md-4">SIG TECH</div>
+            <div class="col-md-4">SIG SOFT</div>
+        <div>
+    </div> {% endcomment %}
+{% endblock content %}
+
+
+
