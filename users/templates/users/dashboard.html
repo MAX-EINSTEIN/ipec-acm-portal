@@ -10,23 +10,22 @@
     <div class="row">
             <div class="profile-banner">
                 <div class="profile-info color-primary-dark">
-                    <img src="{% static 'images/profile_img.jpg' %}" alt="profile image"/>
+                    <img src="{{user.member.profile_image.url}}" alt="profile image"/>
                     <div class="profile-name">
-                        {{  user.username|default:'Guest' }}
+                        {{  user.member.name|default:'Guest' }}
                     </div>
 
                     <div class="member-details">
-                        <div class="class">CSE 2B</div>
+                        <div class="class">{{user.member.branch}} {{user.member.year}}{{user.member.section}}</div>
                         <div class="sigs-joined"> 3 SIGs </div>
                     </div>
 
                     <div class="options">
-                        <a href="#" class="edit-profile">EDIT PROFILE</a>
-                        <a href="#" class="member-type">SIG MEMBER</a>
+                        <a href="{% url 'users:edit-profile' user.member.id %}" class="edit-profile">EDIT PROFILE</a>
+                        <a href="#" class="member-type">{{user.member.member_type}}</a>
                     </div>
                 </div>
-            </div>
-            
+            </div>  
     </div>
 
 {% endblock %}
@@ -34,14 +33,26 @@
 
 
 {% block content %}
-    {% comment %} <div class="mt-4 mr-3 ml-3">
-        <h3>SIGs Joined<h3>
-        <div class="row sigs mt-2 pt-4">
-            <div class="col-md-4">SIG PYTHON</div>
-            <div class="col-md-4">SIG TECH</div>
-            <div class="col-md-4">SIG SOFT</div>
+    <div class="mt-4 mr-3 ml-3">
+        <h4>&nbsp;SIGs Joined<h4>
+        <div class="row sigs mt-2 mb-4 pt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{% static 'images/sig_python.jpg' %}" class="sig-image"/>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{% static 'images/sig_tech.jpg' %}" class="sig-image"/>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{% static 'images/sig_soft.jpg' %}" class="sig-image"/>
+                </div>
+            </div>
         <div>
-    </div> {% endcomment %}
+    </div> 
 {% endblock content %}
 
 
