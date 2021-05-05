@@ -32,9 +32,7 @@
                         <a class="navbar-brand" href="/">
                             <img src="{% static 'images/acmlogo.png' %}" alt="" height="50px"> 
                         </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -51,12 +49,12 @@
                                         SIGS
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="#">SIG WEB</a></li>
-                                        <li><a class="dropdown-item" href="#">SIG GRAPH</a></li>
-                                        <li><a class="dropdown-item" href="#">SIG TECH</a></li>
-                                        <li><a class="dropdown-item" href="#">SIG PYTHON</a></li>
-                                        <li><a class="dropdown-item" href="#">SIG SOFT</a></li>
-                                        <li><a class="dropdown-item" href="#">SIG FOUNDATION</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'sigs:home' "web" %}">SIG WEB</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'sigs:home' "graph" %}">SIG GRAPH</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'sigs:home' "tech" %}">SIG TECH</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'sigs:home' "python" %}">SIG PYTHON</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'sigs:home' "soft" %}">SIG SOFT</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'sigs:home' "foundation" %}">SIG FOUNDATION</a></li>
                                     </ul>
                                 </li>
                             </ul>

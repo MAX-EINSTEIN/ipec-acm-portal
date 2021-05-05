@@ -157,6 +157,17 @@ body{
     line-height: 80px;
     font-weight: 800;
 }
+
+.hero-text-description{
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding-right: 10px;
+  margin-right: 20px;
+  font-size: 22px;
+  font-family: 'Muli', 'Sans Serif';
+  color: black;
+}
+
 .sub-hero{
     font-size: 30px;
     font-family: 'Muli','Sans Serif';
@@ -168,6 +179,14 @@ body{
     border-radius: 10px;
     height: 100%;
     width: 100%;
+}
+
+.hero-img-sig{
+  height: 90%;
+  width: 90%;
+  align-self: center;
+  margin-left: 40px;
+  margin-top: 25px;
 }
 
 

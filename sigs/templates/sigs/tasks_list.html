@@ -1,0 +1,73 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+{% block title %}
+SIG {{  sig.name|upper |default:'SIG' }}
+{% endblock title %}
+
+
+{% block content %}
+    <div class="container">
+        <h3 class="mt-4">SIG {{sig.name|upper}} TASKS</h3>
+
+        <!--
+        <ul class="ml-3 mr-3 mt-4">
+            <li class="row mt-3 mb-2">
+                    <div class="col-md-1">#</div>
+                    <div class="col-md-4">Topic</div>
+                    <div class="col-md-2">Assigned</div>
+                    <div class="col-md-2">Deadline</div>
+                    <div class="col-md-2">Points</div>
+                    <div class="col-md-1">Details</div>
+            </li>
+            {% for task in sig.tasks.all %}
+                <li class="row mt-1 mb-1">
+                    <div class="col-md-1">{{task.number}}</div>
+                    <div class="col-md-4">{{task.topic}}</div>
+                    <div class="col-md-2">{{task.posted_on}}</div>
+                    <div class="col-md-2">{{task.deadline}}</div>
+                    <div class="col-md-2">{{task.points}}</div>
+                    <div class="col-md-1"><a href="#"><i class="fas fa-sign-out-alt"></i></a></div>
+                </li>
+            {% endfor %}
+        </ul> -->
+
+        <table class="table mt-5">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Topic</th>
+                    <th>Assigned</th>
+                    <th>Deadline</th>
+                    <th>Points<th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in sig.tasks.all %}
+                    <tr>
+                        <td class="align-middle">
+                            <a href="{% url 'tasks:detail' task.id %}" style="text-decoration:none; color:black;">
+                                {{ task.number }}
+                            </a>
+                        </td>
+                        <td class="align-middle">
+                            <a href="{% url 'tasks:detail' task.id %}" style="text-decoration:none; color:black;">
+                                {{ task.topic }}
+                            </a>
+                        </td>
+                        <td class="align-middle">
+                            {{ task.posted_on }}
+                        </td>
+                        <td class="align-middle">
+                            {{task.deadline}}
+                        </td class="align-middle">
+                        <td class="align-middle">
+                            {{ task.points }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock content %}
