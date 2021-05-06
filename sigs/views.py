@@ -8,8 +8,12 @@ from .models import SpecialInterestGroup
 def sig_home(request, name):
     name = name.lower()
 
-    sigs = request.user.member.sigs.all()
-    sigs_joined = len(sigs)
+    sigs = []
+    if request.user.is_anonymous:
+        sigs_joined = 0
+    else:
+        sigs = request.user.member.sigs.all()
+        sigs_joined = len(sigs)
 
     sig = get_object_or_404(SpecialInterestGroup, name=name)
 

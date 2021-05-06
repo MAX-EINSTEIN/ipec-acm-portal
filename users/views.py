@@ -36,3 +36,6 @@ class EditMemberDetails(UpdateView):
     fields = ('name', 'roll_no', 'bio', 'branch', 'year', 'section', 'college_email_id', 'contact_number', 'profile_image', 'experience', 'projects')
     success_url = reverse_lazy('users:dashboard')
 
+
+def sigs_joined(request):
+    return render(request, 'users/sigs_joined.html')

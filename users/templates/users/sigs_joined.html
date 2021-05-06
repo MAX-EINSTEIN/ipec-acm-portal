@@ -1,0 +1,31 @@
+{% extends 'base_portal.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1 style="text-align:center;">Special Interest Groups (SIGs)</h1>
+    <h5 style="text-align:center;">You are a member of {{ user.member.sigs.count }} SIGS</h1>
+    <div class="member-sigs row mt-5 mb-5">
+        {% for sig in user.member.sigs.all %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <a href="{% url 'sigs:home' sig.name %}">
+                        <img class="sig-image card-image-top" src="{{sig.image.url}}" alt="{{sig.name}} image"/>
+                    </a>
+                    <div class="card-body">
+                        <div class="card-title mb-1">SIG {{ sig.name | capfirst }} {{ sig.session }}</div>
+                        <div class="sig-management mb-4">
+                            {% for manager in sig.management.all %}
+                                <div class="sig-manager p-1 mb-1 mt-1">{{manager.member.get_member_type_display}}: {{manager.member.name}}</div>
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'sigs:tasks_list' sig.name %}">
+                        <h6 class="sig-tasks-no p-1 pl-2 pr-2"><i class="fas fa-tasks fa-sm"></i> Tasks: &nbsp;{{ sig.tasks.count }}</h6>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

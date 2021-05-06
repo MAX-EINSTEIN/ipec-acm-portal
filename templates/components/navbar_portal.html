@@ -1,0 +1,26 @@
+{% load static %}
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark color-dark">
+    <a class="navbar-brand" href="/">
+    <img src="{% static 'images/only_acmlogo.png' %}" class="d-inline-block align-top my-picture" alt="my picture" loading="lazy">
+    </a>
+    {% comment %} <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+    </button> {% endcomment %}
+    {% comment %} <div class="collapse navbar-collapse" id="navbarSupportedContent"> {% endcomment %}
+
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active ml-2 mr-2">
+                <a class="nav-link" href="/"><i class="fas fa-home fa-lg" aria-hidden="true"></i></a>
+            </li>
+        </ul> 
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active ml-2 mr-2 show-desktop">
+                <a class="nav-link" href="#"><i class="far fa-bell fa-lg"></i></a>
+            </li>
+            {% include 'components/user_dropdown.html' %}
+        </ul>
+    {% comment %} </div> {% endcomment %}
+</nav>

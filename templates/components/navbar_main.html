@@ -1,0 +1,67 @@
+{% load static %}
+
+<div class="main-navbar">
+    <nav class="navbar shift mb-4 ml-5 mr-5 shadow rounded  navbar-expand-md navbar-light bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="{% static 'images/acmlogo.png' %}" alt="" height="50px" loading="lazy"> 
+            </a>
+            <button id="navbarToggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Events</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            SIGS
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'sigs:home' "web" %}">SIG WEB</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sigs:home' "graph" %}">SIG GRAPH</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sigs:home' "tech" %}">SIG TECH</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sigs:home' "python" %}">SIG PYTHON</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sigs:home' "soft" %}">SIG SOFT</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sigs:home' "foundation" %}">SIG FOUNDATION</a></li>
+                        </ul>
+                    </li>
+                </ul>   
+            </div>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav ml-auto" id="navbarRight">
+                {% include 'components/user_dropdown.html' %}
+            </ul>
+            {% else %}
+                <form class="form-inline my-2 my-lg-0">
+                    <a href="{% url 'users:login' %}" class="btn color-primary-dark ml-1 mr-1">Login</a>
+                    <a href="{% url 'users:register' %}" class="btn color-primary-accent ml-1 mr-1">Register</a>
+                </form>
+            {% endif %}
+        </div>
+    </nav>
+</div>
+
+<script>
+    let btn = document.getElementById('navbarToggler');
+    let menu = document.getElementById('navbarRight');
+    let dropdown = document.getElementById('userDropdown');
+
+    btn.addEventListener('click', () => { 
+        let expanded = btn.getAttribute('aria-expanded')
+        if(expanded === 'false'){
+            menu.classList.remove('ml-auto'); 
+            dropdown.classList.remove('dropdown-menu-right');
+            console.log('I am here'); 
+        }else{
+            menu.classList.add('ml-auto'); 
+            dropdown.classList.add('dropdown-menu-right');
+            console.log('I am out of here');
+        } 
+    });
+</script>
