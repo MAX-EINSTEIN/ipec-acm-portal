@@ -6,11 +6,48 @@
 Edit Profile: {{  user.username|default:'Guest' }}
 {% endblock %}
 
+
 {% block content %}
 <div class="container">
+    <h2 class="mt-2">Edit Profile</h2>
+    <hr class="mb-4">
     <form method="post" enctype="multipart/form-data" class="mb-4" novalidate>
         {% csrf_token %}
-        {{form | crispy}}
+        <div class="row">
+            <div class="col-6">
+                {{ form.name|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.roll_no|as_crispy_field }}
+            </div>
+        </div>
+
+        {{form.bio|as_crispy_field}}
+
+        <div class="row">
+            <div class="col-4">
+                {{ form.branch|as_crispy_field }}
+            </div>
+            <div class="col-4">
+                {{ form.year|as_crispy_field }}
+            </div>
+            <div class="col-4">
+                {{ form.section|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                {{ form.college_email_id|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.contact_number|as_crispy_field }}
+            </div>
+        </div>
+
+        {{form.profile_image|as_crispy_field}}
+        {{form.experience|as_crispy_field}}
+        {{form.projects|as_crispy_field}}
+
         <button type="submit" class="btn btn-success">Save changes</button>
         <a href="{% url 'users:dashboard' %}" class="btn btn-outline-secondary" role="button">Cancel</a>
     </form>

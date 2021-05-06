@@ -18,7 +18,7 @@ class TaskDetails(DetailView):
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        form:TaskSubmissionForm = self.get_context_data()['form']
+        form = self.get_context_data()['form']
         if form.is_valid():
             submission = form.save(False)
             submission.submitted_by = self.request.user.member

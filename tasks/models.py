@@ -9,7 +9,8 @@ class Task(models.Model):
     sig = models.ForeignKey("sigs.SpecialInterestGroup", on_delete=models.CASCADE, related_name='tasks')
     posted_on = models.DateTimeField(auto_now_add=True)
     deadline = models.DateTimeField(null=True, blank=True)
-    resources = models.ManyToManyField("LearningResource", blank=True)
+    resources = models.ManyToManyField("tasks.LearningResource", blank=True)
+    starter_files = models.FileField(upload_to="documents/starter_files/", verbose_name="Starter Files", blank=True, null=True)
 
     def __str__(self) -> str:
         return f'{str(self.sig)}_Task_{self.number}'

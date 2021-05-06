@@ -8,7 +8,6 @@ class SpecialInterestGroup(models.Model):
     image = models.ImageField(null=True, blank=True, upload_to='images/sigs/')
     session = models.IntegerField()
     management = models.ManyToManyField("users.ACMTeamMember", blank=True)
-    members = models.ManyToManyField("users.Member", blank=True)
     group_link = models.URLField(max_length=200, null=True, blank=True)
     syllabus_link = models.URLField(max_length=200, null=True, blank=True)
 

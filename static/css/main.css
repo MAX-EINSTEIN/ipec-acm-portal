@@ -160,12 +160,24 @@ body{
 
 .hero-text-description{
   margin-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   padding-right: 10px;
   margin-right: 20px;
   font-size: 22px;
   font-family: 'Muli', 'Sans Serif';
   color: black;
+}
+
+.hero-message{
+  align-self:center; 
+  width:fit-content;
+  /* color: #09357A; */
+  padding-top:2px; 
+  padding-bottom:2px; 
+  border-radius: 2px 2px;
+  font-size: large;
+  font-weight: 600;
+  font-family: sans-serif;
 }
 
 .sub-hero{

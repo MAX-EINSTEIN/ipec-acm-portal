@@ -22,7 +22,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect(reverse_lazy(settings.LOGIN_REDIRECT_URL))
+            return redirect(settings.SIGNUP_REDIRECT_URL, pk=request.user.member.pk)
         else:
             return render(request, 'registration/register.html', {'form': form})
     else:
@@ -33,6 +33,6 @@ def register(request):
 class EditMemberDetails(UpdateView):
     model = Member
     template_name = "users/edit_profile.html"
-    fields = ('name', 'roll_no', 'branch', 'year', 'section', 'college_email_id', 'contact_number', 'profile_image', 'experience', 'projects')
+    fields = ('name', 'roll_no', 'bio', 'branch', 'year', 'section', 'college_email_id', 'contact_number', 'profile_image', 'experience', 'projects')
     success_url = reverse_lazy('users:dashboard')
 

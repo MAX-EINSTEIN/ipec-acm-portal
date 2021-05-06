@@ -11,25 +11,61 @@ Task #{{task.number}}
 <div class="container">
     <div class="task-detail">
         <div class="row py-3">
-            <div class="col-md-7 col-lg-8 task-heading">
-                <h1 class="task-title py-2">{{task.topic}}</h1>
-                <h4 class="task-subtitle">{{task.posted_on}}</h4>
-                <div class="task-description mt-4 mb-4">
-                    {{task.description | escape | linebreaks }}
+            <div class="col-md-7 col-lg-8 card mb-4">
+                <div class="card-body">
+                    <h1 class="card-title py-2">Task #{{task.number}}: {{task.topic}}</h1>
+                    <div class="card-tags mb-2">
+                        <a href="{% url 'sigs:home' task.sig.name %}" class="sig card-subtitle p-1"><i class="fas fa-users fa-sm"></i>&nbsp;&nbsp;SIG {{task.sig.name|upper}}</a>
+                        <h6 href="{% url 'sigs:home' task.sig.name %}" class="card-subtitle p-1">Points:&nbsp;&nbsp;{{task.points|upper}} <i class="fab fa-bitcoin fa-sm"></i></h6>
+                    </div>
+                    <i class="fas fa-calendar-day"></i>
+                    <div class="assigned_on date pl-1 pr-1 mt-1 mb-1" style="display:inline-block;">
+                        <span class="label"><strong>Assigned: </strong></span>
+                        <span class="value">{{task.posted_on}}</span>
+                    </div>
+                    <br>
+                    <i class="fas fa-calendar-day"></i>
+                    <div class="deadline date pl-1 pr-1 mt-1 mb-1" style="display:inline-block;">
+                        <span class="label"><strong>Deadline: </strong></span>
+                        <span class="value">{{task.deadline}}</span>
+                    </div>
+
+                    <h3 class="card-subtitle mt-4">Problem Statement: </h3>
+                    <div class="task-description mt-3 mb-2">
+                        {{task.description | escape | linebreaks }}
+                    </div>
+
+                    <h3 class="card-subtitle mt-4">Learning Resources: </h3>
+                    <div class="learning-resources mt-2 mb-2">
+                        <ul class="resource">
+                            {% for resource in task.resources.all %}
+                            <li>{{resource.type|capfirst}}: <a href="{{resource.url}}">{{resource.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    {% if task.starter_files %}
+                        <h5 class="card-subtitle mt-4" style="font-size:large;">
+                        Starter Files: <a class="btn btn-light ml-2" href="{{task.starter_files.url}}" download="{{task.starter_files.url}}">Download <i style="color:black!important;" class="fas fa-download"></i></a>
+                        </h5>
+                    {% endif %}
                 </div>
             </div> 
-            <aside class="col-sm-8 col-md-5 col-lg-4 pl-5">
+            <aside class="col-sm-8 col-md-5 col-lg-4">
                 <div class="mb-3 bg-white rounded">
                     <div class="card">
                         <div class="card-body">
                             <h3 class="card-title">Task Submission</h3>
                             {% if submitted %}
-                                <h5>Task Submitted</h5>
+                                <div class="task-submitted p-1">
+                                Task Submitted
+                                <i class="ml-1 fas fa-check-square"></i>
+                                </div>
                             {% else %}
                                 <form method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     {{form | crispy}}
-                                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                    <button type="submit" class="btn btn-success btn-block">Submit</button>
                                 </form>
                             {% endif %}        
                         </div>
