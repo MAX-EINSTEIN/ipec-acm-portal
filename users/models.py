@@ -14,7 +14,7 @@ class Member(models.Model):
     section = models.CharField(max_length=1, default='A')
     college_email_id = models.EmailField(verbose_name='College Email', max_length=254, default='@ipec.org.in')
     contact_number = models.CharField(max_length=10, default='')
-    profile_image = models.ImageField(default="/media/images/profile/default.jpg", blank=True, upload_to='images/profile/', height_field=None, width_field=None, max_length=None)
+    profile_image = models.ImageField(default="/images/profile/default_profile.png", blank=True, upload_to='images/profile/', height_field=None, width_field=None, max_length=None)
     experience = models.TextField(default='', blank=True)
     projects = models.TextField(default='', blank=True)
     # member_type = models.CharField(max_length=30, choices=CHOICES, default='MEMBER', blank=True)

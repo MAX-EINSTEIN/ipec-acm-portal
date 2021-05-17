@@ -2,11 +2,7 @@
 
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {% if user.member.name == "" %}
-            <img src="/media/images/profile/default.jpg" alt="profile-image"/>
-        {% else %}
-            <img src="{{user.member.profile_image.url}}" alt="profile-image"/>
-        {% endif %}
+        <img src="{{user.member.profile_image.url}}" alt="profile-image"/>
     </a>
     <div id="userDropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="{% url 'users:dashboard' %}"><i class="far fa-id-card"></i> Dashboard</a>

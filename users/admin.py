@@ -3,7 +3,7 @@ from django.contrib.admin.options import StackedInline, TabularInline
 from .models import Member, Role
 
 # Register your models here.
-# admin.site.register(Member)
+# admin.site.register(Memberda)
 # admin.site.register(Role)
 
 class InlineRole(TabularInline):
