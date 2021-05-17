@@ -19,7 +19,7 @@
                 {% endif %}
                 <div class="header-title mt-3">
                     <div class="member-name">{{ user.member.name }}</div>
-                    <div class="member-type">{{ user.member.get_member_type_display }}</div>
+                    <div class="member-type">{{ user.username|upper }}</div>
                 </div>
             </div>   
             <div class="profile-header mb-3 show-mobile">
@@ -30,7 +30,7 @@
                 {% endif %}
                 <div class="header-title mt-2">
                     <div class="member-name">{{ user.member.name }}</div>
-                    <div class="member-type">{{ user.member.get_member_type_display }}</div>
+                    <div class="member-type">{{ user.username|upper }}</div>
                 </div>
             </div>
             <div class="profile-body">
@@ -75,7 +75,9 @@
                         <div class="card-title mb-1">SIG {{ sig.name | capfirst }} {{ sig.session }}</div>
                         <div class="sig-management mb-4">
                             {% for manager in sig.management.all %}
-                                <div class="sig-manager p-1 mb-1 mt-1">{{manager.member.get_member_type_display}}: {{manager.member.name}}</div>
+                                <div class="sig-manager p-1 mb-1 mt-1">
+                                {{manager.role.designation}}: {{manager.name}}
+                                </div>
                             {% endfor %}
                         </div>
                         <a href="{% url 'sigs:sig_tasks' sig.name %}">

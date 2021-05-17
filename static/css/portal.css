@@ -166,7 +166,8 @@ a:hover{
 
 .sig-manager{
   background: whitesmoke;
-  font-size: small;
+  color: black;
+  font-size:x-small;
   width: fit-content;
   border-radius: 4px 4px;
 }

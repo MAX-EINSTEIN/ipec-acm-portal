@@ -16,7 +16,7 @@
                         <div class="card-title mb-1">SIG {{ sig.name | capfirst }} {{ sig.session }}</div>
                         <div class="sig-management mb-4">
                             {% for manager in sig.management.all %}
-                                <div class="sig-manager p-1 mb-1 mt-1">{{manager.member.get_member_type_display}}: {{manager.member.name}}</div>
+                                <div class="sig-manager p-1 mb-1 mt-1">{{manager.role.designation}}: {{manager.name}}</div>
                             {% endfor %}
                         </div>
                         <a href="{% url 'sigs:sig_tasks' sig.name %}">

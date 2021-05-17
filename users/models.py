@@ -17,18 +17,7 @@ class Member(models.Model):
     profile_image = models.ImageField(default="/media/images/profile/default.jpg", blank=True, upload_to='images/profile/', height_field=None, width_field=None, max_length=None)
     experience = models.TextField(default='', blank=True)
     projects = models.TextField(default='', blank=True)
-    CHOICES = (
-        ('CHAIR', 'CHAIR'),
-        ('VICE_CHAIR', 'VICE CHAIR'),
-        ('PRIME_CORE', 'PRIME CORE'),
-        ('CORE', 'CORE'),
-        ('HEAD', 'SIG HEAD'),
-        ('SUB_HEAD', 'SIG SUBHEAD'),
-        ('COORDINATOR', 'COORDINATOR'),
-        ('SUB_COORDINATOR', 'SUB COORDINATOR'),
-        ('MEMBER', 'SIG MEMBER'),
-    )
-    member_type = models.CharField(max_length=30, choices=CHOICES, default='MEMBER', blank=True)
+    # member_type = models.CharField(max_length=30, choices=CHOICES, default='MEMBER', blank=True)
     is_acm_team = models.BooleanField(default=False, null=True)
     sigs = models.ManyToManyField("sigs.SpecialInterestGroup", blank=True, related_name="sigs_joined")
 
@@ -53,9 +42,22 @@ def save_member(sender, instance, **kwargs):
     instance.member.save()
 
 
-class ACMTeamMember(models.Model):
-    member = models.OneToOneField('Member', verbose_name=("Member"), on_delete=models.DO_NOTHING)
-    designation = models.CharField(max_length=50, default='Management')
+class Role(models.Model):
+    ALL_ROLES = (
+        ('CHAIR', 'CHAIR'),
+        ('VICE_CHAIR', 'VICE CHAIR'),
+        ('PRIME_CORE', 'PRIME CORE'),
+        ('CORE', 'CORE'),
+        ('HEAD', 'SIG HEAD'),
+        ('SUB_HEAD', 'SIG SUBHEAD'),
+        ('COORDINATOR', 'COORDINATOR'),
+        ('SUB_COORDINATOR', 'SUB COORDINATOR'),
+        ('MEMBER', 'SIG MEMBER'),
+    )
+    
+    member = models.OneToOneField('users.Member', verbose_name=("Member"), on_delete=models.CASCADE, related_name='role')
+    type = models.CharField(max_length=50, default='MEMBER', choices=ALL_ROLES)
+    designation = models.CharField(max_length=50, default='SIG MEMBER')
     joined_on = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
 
     def __str__(self) -> str:

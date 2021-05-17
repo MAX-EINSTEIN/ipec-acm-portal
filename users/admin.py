@@ -1,21 +1,22 @@
 from django.contrib import admin
-from django.contrib.admin.options import StackedInline
-from .models import Member, ACMTeamMember
+from django.contrib.admin.options import StackedInline, TabularInline
+from .models import Member, Role
 
 # Register your models here.
 # admin.site.register(Member)
-admin.site.register(ACMTeamMember)
+# admin.site.register(Role)
 
-# class InlineACMTeamMember(StackedInline):
-#     model = ACMTeamMember
+class InlineRole(TabularInline):
+    model = Role
+
 
 class MemberAdmin(admin.ModelAdmin):
     list_display = ('name', 'roll_no', 'branch', 'year', 'section')
-    list_filter = ('sigs', 'year', 'member_type')
+    list_filter = ('sigs', 'year', 'role__designation')
     search_fields = ('name', 'roll_no')
     sortable_by = ('name', )
 
-    # inlines = (InlineACMTeamMember, )
+    inlines = (InlineRole, )
 
 
 
