@@ -19,7 +19,7 @@
                                 <div class="sig-manager p-1 mb-1 mt-1">{{manager.member.get_member_type_display}}: {{manager.member.name}}</div>
                             {% endfor %}
                         </div>
-                        <a href="{% url 'sigs:tasks_list' sig.name %}">
+                        <a href="{% url 'sigs:sig_tasks' sig.name %}">
                         <h6 class="sig-tasks-no p-1 pl-2 pr-2"><i class="fas fa-tasks fa-sm"></i> Tasks: &nbsp;{{ sig.tasks.count }}</h6>
                         </a>
                     </div>

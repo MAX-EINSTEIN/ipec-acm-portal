@@ -1,0 +1,88 @@
+{% extends 'base_portal.html' %}
+{% load static %}
+
+{% block additional_stylesheets %}
+    <link rel="stylesheet" href="{% static "css/tasks_list.css" %}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+{% endblock additional_stylesheets %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-4 mb-5">{{ title }}</h1>
+
+        <div class="wrapper-table">
+        <table class="table-responsive">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Topic</th>
+                    {% if show_sig %}
+                    <th>SIG</th>
+                    {% endif %}
+                    <th>Assigned</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                    <th>Points<th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'tasks:detail' task.id %}">
+                                {{ task.number }}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'tasks:detail' task.id %}">
+                                {{ task.topic }}
+                            </a>
+                        </td>
+                        {% if show_sig %}
+                        <td class="sig">
+                            <a class="{{ task.sig.name|lower }}" 
+                               href="{% url 'sigs:home' task.sig.name %}">
+                                {{ task.sig.name|upper }}
+                            </a>
+                        </td>
+                        {% endif %}
+                        <td>
+                            {{ task.posted_on }}
+                        </td>
+                        <td>
+                            {{task.deadline}}
+                        </td>
+                        <td>
+                            {% if task in submitted_tasks %}
+                            <p class="status status-submitted">
+                                Submitted
+                            </p>
+                            {% else %}
+                                {% if now < task.deadline %}
+                                <p class="status status-pending">
+                                    Pending 
+                                </p>
+                                {% else %}
+                                <p class="status status-missing"> 
+                                    Missing
+                                </p>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ task.points }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+{% endblock content %}

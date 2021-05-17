@@ -1,0 +1,128 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper-table {
+	font-family: Mukta, sans-serif;
+	height: 100vh;
+	display: grid;
+	justify-content: center;
+	align-items: flex-start;
+	color: #000000;
+	font-size: 1rem;
+}
+
+h1{
+    text-align: center;
+}
+
+table {
+	border-collapse: collapse;
+	box-shadow: 0 5px 10px #e1e5ee;
+	background-color: #ffffff;
+	text-align: left;
+}
+
+table thead {
+    color: white;
+    background: #000000;
+	box-shadow: 0 5px 10px #e1e5ee;
+}
+
+table th {
+	text-transform: uppercase;
+	letter-spacing: 0.1rem;
+	font-size: 0.8rem;
+	font-weight: 900;
+	padding: 1rem 2rem;
+    text-align: center;
+}
+
+table th:last-child{
+    padding: 0;
+}
+
+table td {
+	padding: 1rem 2rem;
+}
+
+table a {
+	text-decoration: none;
+    font-weight: 560;
+	color: #000000;
+}
+
+table .sig{
+	text-align: center;
+}
+
+table .sig a{
+	color: white;
+	padding: 0.2rem 1rem;
+	display: block;
+}
+
+table .sig .python{
+	border-radius: 0.2rem;
+	background-color: orangered;
+}
+
+table .sig .graph{
+	border-radius: 0.2rem;
+	background-color: palevioletred;
+}
+
+table .sig .tech{
+	border-radius: 0.2rem;
+	background-color: yellow;
+}
+
+table .sig .foundation{
+	border-radius: 0.2rem;
+	background-color: violet;
+}
+
+table .sig .web{
+	border-radius: 0.2rem;
+	background-color: greenyellow;
+}
+
+table .sig .soft{
+	border-radius: 0.2rem;
+	background-color: lightblue;
+}
+
+table .status {
+	border-radius: 0.2rem;
+	background-color: red;
+	padding: 0.2rem 1rem;
+	text-align: center;
+}
+
+table .status-pending {
+	background-color: #fff0c2;
+	color: #a68b00;
+}
+
+table .status-submitted {
+	background-color: #c8e6c9;
+	color: #388e3c;
+}
+
+table .status-missing {
+	background-color: #ffcdd2;
+	color: #c62828;
+}
+
+
+table tr:nth-child(even) {
+	background-color: #f4f6fb;
+}
+
+table tr td:last-child{
+	text-align: center;
+}

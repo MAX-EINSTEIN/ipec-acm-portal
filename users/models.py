@@ -14,7 +14,7 @@ class Member(models.Model):
     section = models.CharField(max_length=1, default='A')
     college_email_id = models.EmailField(verbose_name='College Email', max_length=254, default='@ipec.org.in')
     contact_number = models.CharField(max_length=10, default='')
-    profile_image = models.ImageField(null=True, blank=True, upload_to='images/profile/', height_field=None, width_field=None, max_length=None)
+    profile_image = models.ImageField(default="/media/images/profile/default.jpg", blank=True, upload_to='images/profile/', height_field=None, width_field=None, max_length=None)
     experience = models.TextField(default='', blank=True)
     projects = models.TextField(default='', blank=True)
     CHOICES = (
@@ -38,7 +38,7 @@ class Member(models.Model):
     def get_all_task_points(self):
         points:int = 0
         for submission in self.task_submission.all():
-            if submission.status:
+            if submission.grading_status:
                 points += submission.points_received
         return points
 

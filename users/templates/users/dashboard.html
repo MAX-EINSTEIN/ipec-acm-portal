@@ -8,74 +8,88 @@
 
 {% block content %}
 <div class="profile-wrapper container">
-    <div class="row py-3">
-        <aside class="col-sm-8 col-md-4 col-lg-3 mb-5">
-            <div class="member-profile">
-                <div class="profile-header mb-4 show-desktop">
-                    {% if user.member.profile_image %}
-                        <img src="{{ user.member.profile_image.url }}" alt="Profile image">
-                    {% else %}
-                        <img src="{% static 'images/default_profile.png' %}" alt="Profile image">
-                    {% endif %}
-                    <div class="header-title mt-3">
-                        <div class="member-name">{{ user.member.name }}</div>
-                        <div class="member-type">{{ user.member.get_member_type_display }}</div>
-                    </div>
-                </div>   
-                <div class="profile-header mb-4 show-mobile">
-                    {% if user.member.profile_image %}
-                        <img src="{{ user.member.profile_image.url }}" alt="Profile image">
-                    {% else %}
-                        <img src="{% static 'images/default_profile.png' %}" alt="Profile image">
-                    {% endif %}
-                    <div class="header-title mt-2">
-                        <div class="member-name">{{ user.member.name }}</div>
-                        <div class="member-type">{{ user.member.get_member_type_display }}</div>
-                    </div>
+  <div class="row py-3">
+    <aside class="col-sm-8 col-md-4 col-lg-3 mb-5">
+        <div class="member-profile">
+            <div class="profile-header mb-3 show-desktop">
+                {% if user.member.profile_image %}
+                    <img src="{{ user.member.profile_image.url }}" alt="Profile image">
+                {% else %}
+                    <img src="{% static 'images/default_profile.png' %}" alt="Profile image">
+                {% endif %}
+                <div class="header-title mt-3">
+                    <div class="member-name">{{ user.member.name }}</div>
+                    <div class="member-type">{{ user.member.get_member_type_display }}</div>
                 </div>
-                <div class="profile-body">
-                    <p class="member-bio mt-2">
-                    {{ user.member.bio }}
-                    </p>
-                    <a href="{% url 'users:edit-profile' user.member.id %}"> <div class="edit-profile-btn p-1 mb-2">Edit Profile</div></a>
-                    <div class="info-highlights mt-2">
-                        <div class="member-class"><i class="fas fa-university fa-sm"></i> {{user.member.branch}} {{ user.member.year }}{{ user.member.section }}</div>&nbsp;.&nbsp; 
-                        <div class="sigs-joined"><i class="fas fa-users fa-sm"></i> {{user.member.sigs.count }} sigs joined</div>&nbsp;.&nbsp; 
-                        <div class="total-task-points"><i class="fab fa-bitcoin"></i> {{ user.member.get_all_task_points }} points</div>
-                    </div>
+            </div>   
+            <div class="profile-header mb-3 show-mobile">
+                {% if user.member.profile_image %}
+                    <img src="{{ user.member.profile_image.url }}" alt="Profile image">
+                {% else %}
+                    <img src="{% static 'images/default_profile.png' %}" alt="Profile image">
+                {% endif %}
+                <div class="header-title mt-2">
+                    <div class="member-name">{{ user.member.name }}</div>
+                    <div class="member-type">{{ user.member.get_member_type_display }}</div>
                 </div>
             </div>
-        </aside>
+            <div class="profile-body">
+                <p class="member-bio mt-1">
+                {{ user.member.bio }}
+                </p>
+                <a href="{% url 'users:edit-profile' user.member.id %}"> <div class="edit-profile-btn p-1 mb-2">Edit Profile</div></a>
+                <div class="info-highlights mt-2 mb-3">
+                    <div class="member-class"><i class="fas fa-university fa-sm"></i> {{user.member.branch}} {{ user.member.year }}{{ user.member.section }}</div>&nbsp;.&nbsp; 
+                    <div class="sigs-joined"><i class="fas fa-users fa-sm"></i> {{user.member.sigs.count }} sigs joined</div>&nbsp;.&nbsp; 
+                    <div class="total-task-points"><i class="fab fa-bitcoin"></i> {{ user.member.get_all_task_points }} points</div>
+                </div>
+                <div class="contact-info"/>
+                  <table>
+                    <tbody>
+                      <tr class="email">
+                        <td> <i class="far fa-envelope"></i> </td>
+                        <td> {{ user.member.college_email_id }} </td>
+                      </tr>
+                      <tr class="phone">
+                        <td> <i class="fas fa-mobile-alt"></i> </td>
+                        <td> {{ user.member.contact_number }} </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+    </aside>
 
-        <div class="col-md-8 col-lg-9">
-            <div class="member-details">
-                <h5 class="mb-4">SIGs Joined<h5>
-                <div class="member-sigs row">
-                    {% for sig in user.member.sigs.all %}
-                        <div class="col-md-4">
-                            <div class="card mb-4">
-                                <a href="{% url 'sigs:home' sig.name %}">
-                                    <img class="sig-image card-image-top" src="{{sig.image.url}}" alt="{{sig.name}} image"/>
-                                </a>
-                                <div class="card-body">
-                                    <div class="card-title mb-1">SIG {{ sig.name | capfirst }} {{ sig.session }}</div>
-                                    <div class="sig-management mb-4">
-                                        {% for manager in sig.management.all %}
-                                            <div class="sig-manager p-1 mb-1 mt-1">{{manager.member.get_member_type_display}}: {{manager.member.name}}</div>
-                                        {% endfor %}
-                                    </div>
-                                    <a href="{% url 'sigs:tasks_list' sig.name %}">
-                                    <h6 class="sig-tasks-no p-1 pl-2 pr-2"><i class="fas fa-tasks fa-sm"></i> Tasks: &nbsp;{{ sig.tasks.count }}</h6>
-                                    </a>
-                                </div>
-                            </div>
+    <div class="col-md-8 col-lg-9">
+      <div class="member-details">
+        <h5 class="mb-4">SIGs Joined<h5>
+        <div class="member-sigs row">
+          {% for sig in user.member.sigs.all %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <a href="{% url 'sigs:home' sig.name %}">
+                        <img class="sig-image card-image-top" src="{{sig.image.url}}" alt="{{sig.name}} image"/>
+                    </a>
+                    <div class="card-body">
+                        <div class="card-title mb-1">SIG {{ sig.name | capfirst }} {{ sig.session }}</div>
+                        <div class="sig-management mb-4">
+                            {% for manager in sig.management.all %}
+                                <div class="sig-manager p-1 mb-1 mt-1">{{manager.member.get_member_type_display}}: {{manager.member.name}}</div>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
+                        <a href="{% url 'sigs:sig_tasks' sig.name %}">
+                        <h6 class="sig-tasks-no p-1 pl-2 pr-2"><i class="fas fa-tasks fa-sm"></i> Tasks: &nbsp;{{ sig.tasks.count }}</h6>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div> 
+          {% endfor %}
+        </div>
+      </div>
+    </div> 
 
-    </div>
+  </div>
 </div>
 
 {% endblock content %}

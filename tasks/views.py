@@ -24,7 +24,7 @@ class TaskDetails(DetailView):
             submission.submitted_by = self.request.user.member
             submission.submitted_for = self.object
             form.save()
-            return redirect('sigs:tasks_list', name=self.object.sig.name)
+            return redirect('sigs:sig_tasks', name=self.object.sig.name)
         return self.post(request, *args, **kwargs)
 
 

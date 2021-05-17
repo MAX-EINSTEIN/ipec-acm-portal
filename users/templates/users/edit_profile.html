@@ -47,6 +47,7 @@ Edit Profile: {{  user.username|default:'Guest' }}
         {{form.profile_image|as_crispy_field}}
         {{form.experience|as_crispy_field}}
         {{form.projects|as_crispy_field}}
+        {{form.sigs|as_crispy_field}}
 
         <button type="submit" class="btn btn-success">Save changes</button>
         <a href="{% url 'users:dashboard' %}" class="btn btn-outline-secondary" role="button">Cancel</a>

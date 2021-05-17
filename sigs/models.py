@@ -15,7 +15,7 @@ class SpecialInterestGroup(models.Model):
         self.name = str(self.name).lower()
 
     def __str__(self):
-        return f'{self.name}_{self.session}'
+        return f'SIG {self.name.upper()} {self.session}'
 
     def get_absolute_url(self):
         return reverse("sigs:sig", kwargs={"name": self.name})
