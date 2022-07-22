@@ -1,0 +1,15 @@
+#Ignore these files
+.env
+**/*.pyc
+db.sqlite3
+.gitignore
+
+
+#Ignore these directory and folders
+logs/
+.git/
+.cache/
+.vscode/
+venv/
+**/__pycache__/
+media/
